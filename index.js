@@ -1,9 +1,10 @@
 const http = require("http");
 const express = require("express");
-
+const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 app.use(cors());
+dotenv.config();
 // const server = http.createServer(app);
 const { Server } = require("socket.io");
 // import { Server } from "socket.io";
@@ -14,7 +15,7 @@ const server = app.listen(PORT, () => {
 });
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
