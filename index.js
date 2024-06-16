@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 app.use(cors());
+app.get("/test", (req, res) => {
+  res.status(200).json({ status: "success" });
+});
 dotenv.config();
 // const server = http.createServer(app);
 const { Server } = require("socket.io");
@@ -21,6 +24,7 @@ const io = new Server(server, {
     credentials: true,
   },
 });
+
 // const io = require("socket.io")(server, {
 //   cors: {
 //     origin: "http://localhost:3000",
