@@ -181,7 +181,7 @@ io.on("connection", async (socket) => {
     io.to(data.room).emit("bosses", boss);
   });
   socket.on("createroom", (data) => {
-    console.log(data);
+    console.log(data, "roomcreate");
     socket.join(data.room);
     addroom(data.room);
     const lobby = createLobbies(data, socket.id);
@@ -201,6 +201,8 @@ io.on("connection", async (socket) => {
     console.log(lobby, "lobby");
     console.log(data, boss, "boss info");
     const updatedboss = boss.filter((c) => c[data.room] !== undefined);
+    console.log(rooms, "total romm");
+    console.log(updatedboss, "bossupdate");
     io.to(data.room).emit("bosses", updatedboss[0][data.room]);
     io.to(data.room).emit("receive", lobby);
     // socket.to(data.room).emit("receive", lobby)
